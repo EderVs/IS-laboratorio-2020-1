@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+
+    {% load static %}
+    <link rel="stylesheet" href={% static "Home/base.css" %}>
+    {% block css_content %}
+    {% endblock %}
+</head>
+<body>
+    {% block body_content %}
+    {% endblock %}
+</body>
+
+</html>
