@@ -1,0 +1,27 @@
+h1 {
+    display: block;
+    text-align: center;
+    padding: 20px;
+    width: 400px;
+}
+
+.profile-picture img{
+    border-radius: 50%;
+    height: 250px;
+    width: 250px;
+}
+
+.center {
+    margin: auto;
+}
+
+#paragraph {
+    display: block;
+    text-align: center;
+    width: 400px;
+}
+
+#profile-picture {
+    display: block;
+    width: 250px;
+}
