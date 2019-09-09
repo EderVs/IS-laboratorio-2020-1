@@ -4,4 +4,23 @@
 
 <h1>Welcome to my personal blog!</h1>
 
+<h2>Posts:</h2>
+
+
+{% for post in posts %}
+
+<div class="post">
+    <div class="post_title">
+        {{ post.title }}
+    </div>
+    <div class="post_date">
+        {{ post.date }}
+    </div>
+    <div class="post_paragraph">
+        {{ post.paragraph }}
+    </div>
+</div>
+
+{% endfor %}
+
 {% endblock %}

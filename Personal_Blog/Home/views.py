@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
 
+from Post.models import Post
+
 
 # Function Views
 def index(request):
@@ -26,7 +28,8 @@ class Index(View):
         """
             Get in my Index.
         """
-        print('With class-based views')
+        all_posts = Post.objects.all()
+        self.context['posts'] = all_posts
         return render(request, self.template, self.context)
 
 
