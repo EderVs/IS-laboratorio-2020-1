@@ -6,12 +6,12 @@
 
 <h2>Posts:</h2>
 
-
 {% for post in posts %}
 
+<a href="{% url 'onePost' post.id %}">
 <div class="post">
     <div class="post_title">
-        {{ post.title }}
+        <b>{{ post.title }}</b>
     </div>
     <div class="post_date">
         {{ post.date }}
@@ -22,5 +22,9 @@
 </div>
 
 {% endfor %}
+
+<div>
+    <a href="{% url 'about' %}">About me</a>
+</div>
 
 {% endblock %}

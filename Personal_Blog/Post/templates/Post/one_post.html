@@ -1,0 +1,19 @@
+{% extends "Home/base.html" %}
+
+{% load static %}
+
+{% block body_content %}
+
+<a href="{% url 'index' %}">Home</a>
+
+<h1> {{ post.title }} </h1>
+<div class="">
+    {{ post.date }}
+</div>
+<div class="">
+    <p>
+        {{ post.paragraph }}
+    </p>
+</div>
+
+{% endblock %}
