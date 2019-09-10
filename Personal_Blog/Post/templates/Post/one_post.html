@@ -10,14 +10,12 @@
 
 {% block body_content %}
 
-{% get_media_prefix as MEDIA_PREFIX %}
-
 <a href="{% url 'index' %}">Home</a>
 
 <div id="post" class="center">
     {% if post.image %}
     <picture id="post-image">
-        <img src="{{ MEDIA_PREFIX }}{{ post.image }}">
+        <img src="{{ post.image.url }}">
     </picture>
     {% endif %}
 
