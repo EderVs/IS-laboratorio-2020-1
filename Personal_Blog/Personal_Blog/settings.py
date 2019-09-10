@@ -120,3 +120,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Media files
+# https://docs.djangoproject.com/en/2.2/topics/files/    
+
+MEDIA_ROOT = 'media'
+MEDIA_URL = '/media/'

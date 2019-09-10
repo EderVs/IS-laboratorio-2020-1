@@ -1,5 +1,5 @@
+import django
 from django.db import models
-from django.utils import timezone
 
 
 class Post(models.Model):
@@ -8,7 +8,8 @@ class Post(models.Model):
     """
     title = models.CharField(max_length=200, null=False)
     paragraph = models.TextField(null=False)
-    date = models.DateTimeField(default=timezone.now(), null=False)
+    date = models.DateTimeField(default=django.utils.timezone.now, null=False)
+    image = models.ImageField(upload_to='posts', null=True)
 
     def __str__(self):
         return str(self.id) + " " + self.title
