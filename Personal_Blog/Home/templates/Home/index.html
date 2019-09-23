@@ -8,7 +8,7 @@
 
 {% for post in posts %}
 
-<a href="{% url 'onePost' post.id %}">
+<a href="{% url 'Post:onePost' post.id %}">
 <div class="post">
     <div class="post_title">
         <h3>{{ post.title }}</h3>
@@ -21,7 +21,7 @@
 {% endfor %}
 
 <div>
-    <a href="{% url 'about' %}">About me</a>
+    <a href="{% url 'Home:about' %}">About me</a>
 </div>
 
 {% endblock %}
