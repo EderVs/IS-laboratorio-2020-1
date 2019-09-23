@@ -1,0 +1,13 @@
+.center {
+    margin: auto;
+}
+
+#post {
+    display: block;
+    width: 800px;
+}
+
+#post-image img {
+    display: block;
+    width: 100%;
+}

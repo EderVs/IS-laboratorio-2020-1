@@ -2,18 +2,32 @@
 
 {% load static %}
 
+{% block css_content %}
+
+<link rel="stylesheet" href="{% static 'Post/css/one_post.css' %}">
+
+{% endblock %}
+
 {% block body_content %}
 
 <a href="{% url 'index' %}">Home</a>
 
-<h1> {{ post.title }} </h1>
-<div class="">
-    {{ post.date }}
-</div>
-<div class="">
-    <p>
-        {{ post.paragraph }}
-    </p>
+<div id="post" class="center">
+    {% if post.image %}
+    <picture id="post-image">
+        <img src="{{ post.image.url }}">
+    </picture>
+    {% endif %}
+
+    <h1> {{ post.title }} </h1>
+    <div class="">
+        {{ post.date }}
+    </div>
+    <div class="">
+        <p>
+            {{ post.paragraph }}
+        </p>
+    </div>
 </div>
 
 {% endblock %}
