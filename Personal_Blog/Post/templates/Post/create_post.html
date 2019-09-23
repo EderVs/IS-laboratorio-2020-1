@@ -1,0 +1,30 @@
+{% extends "Home/base.html" %}
+
+{% load static %}
+
+{% block css_content %}
+
+<link rel="stylesheet" href="{% static 'Post/css/create_post.css' %}">
+
+{% endblock %}
+
+{% block body_content %}
+
+<a href="{% url 'Home:index' %}">Home</a>
+
+<div id="create_post" class="center">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- {{ form.as_ul }} -->
+        <label>Title</label>
+        <input type="text" name="title" required>
+        <label>Paragraph</label>
+        <textarea name="paragraph" required></textarea>
+        <label>Image</label>
+        <input type="file" name="image" accept="image/*">
+        <input type="submit" value="Create">
+    </form>
+
+</div>
+
+{% endblock %}
