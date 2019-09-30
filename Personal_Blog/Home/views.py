@@ -1,6 +1,6 @@
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 
 from Post.models import Post
@@ -74,6 +74,16 @@ class Login(View):
             user = authenticate(request, username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             if user is not None:
                 login(request, user)
+                return redirect('Home:index')
 
         self.context['form'] = form
         return render(request, self.template, self.context)
+
+
+class Logout(View):
+    """
+        Does the logout
+    """
+    def get(self, request):
+        logout(request)
+        return redirect("Home:index")
