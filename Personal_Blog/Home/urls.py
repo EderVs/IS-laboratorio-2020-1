@@ -9,4 +9,6 @@ urlpatterns = [
     # Class-based Views
     path('', views.Index.as_view(), name='index'),
     path('about/', views.About.as_view(), name='about'),
+    path('login/', views.Login.as_view(), name='login'),
+    path('logout/', views.Logout.as_view(), name='logout'),
 ]
