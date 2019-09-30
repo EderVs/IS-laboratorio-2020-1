@@ -74,6 +74,8 @@ class Login(View):
             user = authenticate(request, username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             if user is not None:
                 login(request, user)
+                if request.GET.get("next", None) is not None:
+                    return redirect(request.GET.get("next"))
                 return redirect('Home:index')
 
         self.context['form'] = form
