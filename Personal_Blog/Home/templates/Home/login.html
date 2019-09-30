@@ -1,0 +1,26 @@
+{% extends "Home/base.html" %}
+
+{% load static %}
+
+{% block css_content %}
+
+{% endblock %}
+
+{% block body_content %}
+
+<a href="{% url 'Home:index' %}">Home</a>
+
+<div id="login" class="center">
+    <form method="post">
+        {% csrf_token %}
+        <!-- {{ form.as_ul }} -->
+        <label>Username</label>
+        <input type="text" name="username" required>
+        <label>Password</label>
+        <input type="password" name="password" required>
+        <input type="submit" value="Login">
+    </form>
+
+</div>
+
+{% endblock %}

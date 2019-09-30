@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
 
@@ -25,7 +26,7 @@ class OnePost(View):
         return render(request, self.template, self.context)
 
 
-class CreatePost(View):
+class CreatePost(LoginRequiredMixin, View):
     """
         Creates a new post
     """
