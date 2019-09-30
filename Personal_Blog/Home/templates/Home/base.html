@@ -11,6 +11,15 @@
     {% endblock %}
 </head>
 <body>
+    {% block body_header %}
+    <div>
+        {% if user.is_authenticated %}
+        <a href="{% url 'Home:logout' %}">Logout</a>
+        {% else %}
+        <a href="{% url 'Home:login' %}">Login</a>
+        {% endif %}
+    </div>
+    {% endblock %}
     {% block body_content %}
     {% endblock %}
 </body>
