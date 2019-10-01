@@ -1,4 +1,4 @@
-{% extends "Home/base.html" %}
+{% extends "Home/not_home.html" %}
 
 {% load static %}
 
@@ -9,8 +9,6 @@
 {% endblock %}
 
 {% block body_content %}
-
-<a href="{% url 'Home:index' %}">Home</a>
 
 <div id="post" class="center">
     {% if post.image %}

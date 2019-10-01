@@ -1,10 +1,12 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
 
+from .utils import IsNotAuthenticatedMixin
 from Post.models import Post
-from Home.forms import LoginForm
+from .forms import LoginForm
 
 
 # Function Views
@@ -49,7 +51,7 @@ class About(View):
         return render(request, self.template, self.context)
 
 
-class Login(View):
+class Login(IsNotAuthenticatedMixin, View):
     """
         Admin login
     """
@@ -82,7 +84,7 @@ class Login(View):
         return render(request, self.template, self.context)
 
 
-class Logout(View):
+class Logout(LoginRequiredMixin, View):
     """
         Does the logout
     """

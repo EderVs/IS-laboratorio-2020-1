@@ -1,14 +1,14 @@
-{% extends "Home/base.html" %}
+{% extends "Home/not_home.html" %}
 
 {% load static %}
 
 {% block css_content %}
+{% endblock %}
 
+{% block authentication %}
 {% endblock %}
 
 {% block body_content %}
-
-<a href="{% url 'Home:index' %}">Home</a>
 
 <div id="login" class="center">
     <form method="post">
