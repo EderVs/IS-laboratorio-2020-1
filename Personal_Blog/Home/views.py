@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -73,12 +74,14 @@ class Login(IsNotAuthenticatedMixin, View):
         """
         form = LoginForm(request.POST)
         if form.is_valid():
-            user = authenticate(request, username=form.cleaned_data['username'], password=form.cleaned_data['password'])
-            if user is not None:
-                login(request, user)
-                if request.GET.get("next", None) is not None:
-                    return redirect(request.GET.get("next"))
-                return redirect('Home:index')
+            users = User.objects.filter(email=form.cleaned_data['email'])
+            if len(users) > 0:
+                user = authenticate(request, username=users[0].username, password=form.cleaned_data['password'])
+                if user is not None:
+                    login(request, user)
+                    if request.GET.get("next", None) is not None:
+                        return redirect(request.GET.get("next"))
+                    return redirect('Home:index')
 
         self.context['form'] = form
         return render(request, self.template, self.context)
