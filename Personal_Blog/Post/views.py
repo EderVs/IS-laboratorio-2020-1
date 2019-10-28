@@ -1,9 +1,11 @@
+from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
 
-from .models import Post
 from .forms import PostForm
+from .models import Post
+from .utils import send_email
 
 
 class OnePost(View):
@@ -54,6 +56,12 @@ class CreatePost(LoginRequiredMixin, View):
                 image = form.cleaned_data['image'],
             )
             new_post.save()
+
+            # Sending email
+            subject = 'There is a new Post here'
+            content = 'New post: ' + new_post.title
+            # Sending email to the same host
+            send_email([settings.EMAIL_HOST_USER], subject, content)
             return redirect('Post:post_created')
 
         self.context['form'] = form
