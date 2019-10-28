@@ -1,0 +1,56 @@
+nav {
+    box-shadow: 0 1px 15px 0 rgba(0, 0, 0, 0.1);
+    background-color: rgba(249, 249, 249, 1);
+    font-family: Perpetua, Baskerville, "Big Caslon", "Palatino Linotype", Palatino, "URW Palladio L", "Nimbus Roman No9 L", serif;
+    height: 50px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 1em 0;
+    padding: .8em 0;
+    width: 600px;
+}
+
+nav ul li {
+    display: inline;
+    font-size: 17px;
+    margin-right: 1em;
+}
+
+nav ul li:first-child {
+    font-size: 20px;
+}
+
+nav ul li:last-child {
+    margin-right: 0;
+}
+
+/* unvisited link */
+nav ul li a:link {
+    color: black;
+    text-decoration: none;
+}
+
+/* visited link */
+nav ul li a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+/* mouse over link */
+nav ul li a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+/* selected link */
+nav ul li a:active {
+    color: black;
+    text-decoration: none;
+}
+
+#nav-index {
+    margin-right: 4em;
+}
