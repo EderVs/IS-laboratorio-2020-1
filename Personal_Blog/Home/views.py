@@ -7,6 +7,7 @@ from django.views import View
 
 from .utils import IsNotAuthenticatedMixin
 from .forms import LoginForm, SubscriberForm
+from .models import Subscriber
 from Post.models import Post
 
 
@@ -42,6 +43,21 @@ class Index(View):
             'subscriber_form': subscriber_form
         })
         return render(request, self.template, self.context)
+
+
+class AddSubscriber(View):
+    """
+        Adding to the Newsletter
+    """
+    def post(self, request):
+        subscriber_form = SubscriberForm(request.POST)
+        if subscriber_form.is_valid():
+            new_subscriber = Subscriber(
+                email=subscriber_form.cleaned_data['email']
+            )
+            new_subscriber.save()
+
+        return redirect('Home:index')
 
 
 class About(View):

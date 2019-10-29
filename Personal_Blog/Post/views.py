@@ -6,6 +6,7 @@ from django.views import View
 from .forms import PostForm
 from .models import Post
 from .utils import send_email
+from Home.models import Subscriber
 
 
 class OnePost(View):
@@ -57,11 +58,14 @@ class CreatePost(LoginRequiredMixin, View):
             )
             new_post.save()
 
-            # Sending email
+            # Sending emails to subscribers
             subject = 'There is a new Post here'
             content = 'New post: ' + new_post.title
-            # Sending email to the same host
-            send_email([settings.EMAIL_HOST_USER], subject, content)
+            subscribers = list(map(
+                lambda x: x.email,
+                Subscriber.objects.all()
+            ))
+            send_email(subscribers, subject, content)
             return redirect('Post:post_created')
 
         self.context['form'] = form

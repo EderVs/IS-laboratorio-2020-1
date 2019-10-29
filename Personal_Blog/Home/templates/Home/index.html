@@ -9,19 +9,20 @@
 {% for post in posts %}
 
 <a href="{% url 'Post:onePost' post.id %}">
-<div class="post">
-    <div class="post_title">
-        <h3>{{ post.title }}</h3>
+    <div class="post">
+        <div class="post_title">
+            <h3>{{ post.title }}</h3>
+        </div>
+        <div class="post_date">
+            {{ post.date }}
+        </div>
     </div>
-    <div class="post_date">
-        {{ post.date }}
-    </div>
-</div>
+</a>
 
 {% endfor %}
 
 <div id="subscribe-form">
-    <form method="POST">
+    <form method="POST" action="{% url 'Home:add_subscriber' %}">
         {% csrf_token %}
         {{ subscriber_form }}
         <input type="submit" value="Subscribe!"/>
