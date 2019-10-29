@@ -6,8 +6,8 @@ from django.shortcuts import render, redirect
 from django.views import View
 
 from .utils import IsNotAuthenticatedMixin
+from .forms import LoginForm, SubscriberForm
 from Post.models import Post
-from .forms import LoginForm
 
 
 # Function Views
@@ -34,7 +34,13 @@ class Index(View):
             Get in my Index.
         """
         all_posts = Post.objects.all()
-        self.context['posts'] = all_posts
+        subscriber_form = SubscriberForm()
+        print(subscriber_form)
+
+        self.context.update({
+            'posts': all_posts,
+            'subscriber_form': subscriber_form
+        })
         return render(request, self.template, self.context)
 
 
