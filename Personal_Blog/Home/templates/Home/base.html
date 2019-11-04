@@ -43,10 +43,17 @@
             </ul>
         </nav>
     </header>
+    {% if notification_message %}
+    <div id="notifications" class="notification-{{notification_type}}">
+        {{ notification_message }}
+    </div>
+    {% endif %}
     {% endblock %}
 
+    <div id="body-content">
     {% block body_content %}
     {% endblock %}
+    </div>
 </body>
 
 </html>

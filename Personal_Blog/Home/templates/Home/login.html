@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block css_content %}
+<link rel="stylesheet" href="{% static 'Home/css/login.css' %}"/>
 {% endblock %}
 
 {% block authentication %}
@@ -11,13 +12,31 @@
 {% block body_content %}
 
 <div id="login" class="center">
+    <h1>Login</h1>
     <form method="post">
         {% csrf_token %}
-        <!-- {{ form.as_ul }} -->
-        <label>Email</label>
-        <input type="email" name="email" required>
-        <label>Password</label>
-        <input type="password" name="password" required>
+        <div class="login-input-div">
+            <label class="login-label">Email</label>
+            <input class="input login-input" type="email" name="email" value="{{ form.email.value }}" required>
+            {% if form.email.errors %}
+            {% for error in form.email.errors %}
+            <div class="input-error">
+                {{ error }}
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="login-input-div">
+            <label class="login-label">Password</label>
+            <input class="input login-input" type="password" name="password" required>
+            {% if form.password.errors %}
+            {% for error in form.password.errors %}
+            <div class="input-error">
+                {{ error }}
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
         <input type="submit" value="Login">
     </form>
 

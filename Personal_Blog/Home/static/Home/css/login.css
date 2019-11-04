@@ -1,0 +1,19 @@
+#login {
+    margin: 0 auto;
+    width: 300px;    
+}
+
+.login-input-div {
+    display: block;
+    margin-bottom: 1em;
+    width: 300px;
+}
+
+.login-input {
+    display: block;    
+}
+
+.login-label {
+    margin-bottom: .5em;
+    display: block;
+}

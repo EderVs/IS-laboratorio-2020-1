@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
 
-from .utils import IsNotAuthenticatedMixin
+from .utils import IsNotAuthenticatedMixin, NotificationView
 from .forms import LoginForm, SubscriberForm
 from .models import Subscriber
 from Post.models import Post
@@ -23,12 +23,15 @@ def index(request):
 
 
 # Class-based Views
-class Index(View):
+class Index(NotificationView):
     """
         Index in my Web Page but with Clased based views.
     """
-    template = 'Home/index.html'
-    context = {'title': 'Index'}
+
+    def __init__(self):
+        super().__init__()
+        self.template = 'Home/index.html'
+        self.context['title'] = 'Index'
 
     def get(self, request):
         """
@@ -36,7 +39,10 @@ class Index(View):
         """
         all_posts = Post.objects.all()
         subscriber_form = SubscriberForm()
-        print(subscriber_form)
+
+        # Notifications
+        self.context['notification_message'] = request.GET.get('notification-message', '')
+        self.context['notification_type'] = request.GET.get('notification-type', 'normal')
 
         self.context.update({
             'posts': all_posts,
@@ -49,6 +55,7 @@ class AddSubscriber(View):
     """
         Adding to the Newsletter
     """
+
     def post(self, request):
         subscriber_form = SubscriberForm(request.POST)
         if subscriber_form.is_valid():
@@ -64,8 +71,11 @@ class About(View):
     """
         About me page.
     """
-    template = 'Home/about.html'
-    context = {'title': 'About me'}
+
+    def __init__(self):
+        super().__init__()
+        self.template = 'Home/about.html'
+        self.context['title'] = 'About me'
 
     def get(self, request):
         """
@@ -74,12 +84,15 @@ class About(View):
         return render(request, self.template, self.context)
 
 
-class Login(IsNotAuthenticatedMixin, View):
+class Login(IsNotAuthenticatedMixin, NotificationView):
     """
         Admin login
     """
-    template = 'Home/login.html'
-    context = {'title': 'Admin Login'}
+
+    def __init__(self):
+        super().__init__()
+        self.template = 'Home/login.html'
+        self.context['title'] = 'Admin Login'
 
     def get(self, request):
         """
@@ -104,6 +117,10 @@ class Login(IsNotAuthenticatedMixin, View):
                     if request.GET.get("next", None) is not None:
                         return redirect(request.GET.get("next"))
                     return redirect('Home:index')
+                else:
+                    form.add_error("password", "Password incorrect")
+            else:
+                form.add_error("email", "This email doesn't exist")
 
         self.context['form'] = form
         return render(request, self.template, self.context)
